@@ -4,7 +4,7 @@ import com.microservicios.suma.services.CalculaSumaServicio;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author Felipe Garrido.
+ * @author Felipe Garrido
  */
 @RestController
 public class PrincipalControlador {
