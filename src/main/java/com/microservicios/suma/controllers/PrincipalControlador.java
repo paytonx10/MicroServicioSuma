@@ -1,19 +1,18 @@
 package com.microservicios.suma.controllers;
+import com.microservicios.suma.models.OperadoresDigitos;
+import com.microservicios.suma.services.CalculaSumaServicio;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+/**
+ * @author Felipe Garrido
+ */
 @RestController
 public class PrincipalControlador {
-    @RequestMapping("/sumar")
-    public Integer sumar(@RequestParam(value="calculoSumar") String valores) {
-        String[] valoresArr = valores.split(",");
-        int valoresSum = 0;
-        for (int i = 0; i < valoresArr.length; i++) {
-            valoresSum += Integer.valueOf(valoresArr[i]);
-        }
-        System.out.println("Suma: "+valoresSum);
-        return valoresSum;
+
+    @PostMapping(value = "/suma", consumes = "application/json", produces = "application/json")
+    public OperadoresDigitos sumar(@RequestBody OperadoresDigitos operadoresDigitos) throws Exception {
+        CalculaSumaServicio calculaSumaServicio = new CalculaSumaServicio();
+        OperadoresDigitos operadoresDigitosRetorno = calculaSumaServicio.calcularSuma(operadoresDigitos);
+        return operadoresDigitosRetorno;
     }
 }
